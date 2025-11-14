@@ -1,48 +1,134 @@
-# multi-shop-stock-check-toolkit
-Excel + VBA toolkit for multi-branch retail stock checks and supplier ordering.
+# 🧰 Multi-Shop Stock Check Toolkit  
+**Excel + VBA toolkit for multi-branch retail stock checking and supplier ordering**
 
-Multi-Shop Stock Check Toolkit (Excel + VBA)
+---
 
-This project is a production-used Excel + VBA toolkit built for a small retail chain to standardise stock checks and streamline supplier ordering across multiple shops.
+### 📌 Overview  
+This toolkit is a production-used Excel + VBA system built for a small retail chain to **standardise stock checks**, **automate checklist exports**, and **generate supplier orders** across multiple branches, without needing EPOS integration.
 
-Features
+It replaces a slow, error-prone manual workflow with a reliable and structured process.
 
-Master product catalogue
-Single source of truth for all products (ID, category, brand, order unit size, global status).
+---
 
-Per-shop stock sheets
-Identical table structures for each branch (ShopName_Stock), including:
+## 🚀 Features
 
-Current stock (units)
+### **📦 Central Product Catalogue**
+Single source of truth for all products:
+- Product ID  
+- Category  
+- Brand  
+- Display name  
+- Order-unit size  
+- Global/Local activeness  
 
-Par levels
+---
 
-Local & global status
+### **🏪 Per-Shop Smart Stock Sheets**
+Each shop has its own `ShopName_Stock` sheet with:
+- Current stock (units)  
+- Par levels  
+- Order-unit size  
+- Last counted date  
+- Local vs Global status  
+- Auto-sorting  
+- Quick-toggle filters (hide inactive / show all)  
 
-Last counted date
+All sheets follow an *identical structure*, enabling automation.
 
-SortKey for custom ordering
+---
 
-Data validation & dependent dropdowns
-Uses named ranges and INDIRECT+SUBSTITUTE+TRIM to provide robust dependent lists (e.g. category → brand → product) while tolerating spaces, hyphens and special characters.
+### **📝 One-Click Checklist Export**
+Exports a clean stock-counting checklist for any shop:
 
-Checklist export
-For each *_Stock sheet, a button runs ExportOneShop, generating a clean Stock Check workbook:
+- Only active items  
+- Grouped by category  
+- Auto-sorted  
+- Shop-branded header  
+- Saved automatically to:  
+  **`/Exports/Checklists/ShopName_StockCheck_YYYY-MM-DD.xlsx`**
 
-Grouped by product category
+---
 
-Product ID + Display Name
+### **📥 One-Click Checklist Import**
+After a shop returns their completed checklist:
 
-Blank “Counted Units” column for staff
+- Reads counted units  
+- Updates the correct shop sheet  
+- Stamps "Last Counted" date  
+- Ignores invalid or missing rows  
+- Works even if importing only one shop at a time  
 
-Only includes Active + Global Active items
+---
 
-Checklist import
-Import_Returned_Checklists reads completed checklists from Imports/Checklists, identifies the target shop, matches rows by Product ID, and updates:
+### **📦 Automated Supplier Order Generator**
+Aggregates all shops’ checklists and produces a ready-to-paste WhatsApp order message:
 
-Current Stock (Units)
+- Totals required units/boxes across all branches  
+- Uses each product’s order-unit size  
+- Saves output to:  
+  **`/Exports/Supplier_Order_YYYY-MM-DD.txt`**
 
-Last Counted
+Example output:
+- Gotek X – Blue (3 Units)
+- Gotek Pro – Titanium (2 Boxes of 10)
 
-Supplier order list generator
-Generate_Supplier_Order_From_Checklists aggregates requested quantities across all shops, uses the “Order Unit (count)” to convert units to boxes, and outputs a WhatsApp-ready text file:
+
+---
+
+## 🔧 Reliability & Compatibility
+
+### ✔ OneDrive-Safe File Handling  
+Automatically resolves whether Excel is opened via:
+- Local OneDrive path (`C:\Users\...\OneDrive\...`)
+- Cloud URL (`https://d.docs.live.net/...`)
+
+Ensures exports/imports always save to the correct folders.
+
+### ✔ Password-Protected Workflow  
+All sheets are protected with `UserInterfaceOnly`, allowing:
+- Sorting  
+- Filtering  
+- Automation  
+while preventing accidental edits.
+
+### ✔ Robust Error Handling  
+Includes:
+- Safe folder creation  
+- Graceful failures on missing checklists  
+- Automatic filename conflict resolution  
+- Protection recovery  
+
+---
+
+## 📁 Folder Structure
+
+```
+Vapers Paradise /
+├── Stocklists /
+│   ├── Exports /
+│   │   └── Checklists /
+│   │       └── Supplier_Order_YYYY-MM-DD.txt
+│   ├── Imports /
+│   │   └── Checklists /   (place returned files here)
+│   └── Master Stocklist.xlsm
+```
+
+## 🖥 Technology
+
+| Component | Purpose |
+|----------|---------|
+| **Excel (XLSM)** | Interface + storage |
+| **VBA** | Automation + file I/O + sorting + validation |
+| **OneDrive Sync** | Cross-machine access |
+| **Structured Tables** | Consistent schema across shops |
+
+---
+
+## 📜 Licence
+Internal business tool — not licensed for external distribution.
+
+---
+
+## 👤 Author
+**Danny Hussain**  
+Retail Ops, Automation & Data Specialist  
