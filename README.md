@@ -131,4 +131,20 @@ Internal business tool — not licensed for external distribution.
 
 ## 👤 Author
 **Danny Hussain**  
-Retail Ops, Automation & Data Specialist  
+Retail Ops, Automation & Data Specialist 
+
+
+## Demo Workbook
+
+The repository includes `Multi_Shop_StockCheck_Demo.xlsm`, a demo version of the
+tool using **fake product data and shop names**. The VBA macros and workflow are
+identical to the production version used in a real retail environment.
+
+To try it:
+
+1. Create the folder structure described in [Folder Structure](#-folder-structure).
+2. Open the demo workbook and enable macros.
+3. Use the buttons on the `Products` sheet to:
+   - Export store checklists
+   - Import returned checklists
+   - Generate a supplier order text file
